@@ -99,7 +99,7 @@ public class UserService{
     }
 
     public List<UserResponse> getCustomerData(){
-        String sql ="SELECT id,ci, firstname, lastname, location, status, number,email FROM _user";
+        String sql ="SELECT id,ci, firstname, lastname, location, status, number,email FROM _user WHERE role='USER'";
         logger.debug("Executing: " + sql);
         try {
             List<UserResponse> res = this.jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserResponse.class));
@@ -120,4 +120,5 @@ public class UserService{
             return null;
         }
     }
+
 }
