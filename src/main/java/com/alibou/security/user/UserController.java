@@ -37,13 +37,13 @@ public class UserController {
     @Operation(summary = "Update user by Id")
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Success Register Request",
+            @ApiResponse(responseCode = "200", description = "Success Update Request",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = AppResponse.class))}),
             @ApiResponse(responseCode = "500", description = "Internal error.", content = @Content)
     })
-    @RequestMapping(value = "/updaterUser", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateCustomer", method = RequestMethod.PUT)
     public AppResponse UpdateCustomer(@RequestBody RegisterRequest param) throws Exception {
-        logger.info("/updaterUser/" + param);
+        logger.info("/updateCustomer/" + param);
         AppResponse response = new AppResponse();
         try {
             service.updateCustomer(param);
@@ -80,7 +80,7 @@ public class UserController {
     })
     @RequestMapping(value = "/getCustomers", method = RequestMethod.GET)
     public AppResponse getCustomers() throws Exception {
-        logger.debug("/getCustomer" );
+        logger.debug("/getCustomers" );
 
         AppResponse response = new AppResponse();
         try {
@@ -104,6 +104,7 @@ public class UserController {
 
         AppResponse response = new AppResponse();
         try {
+           /// List<UserResponse> res = service.getCustomerData();
             List<UserResponse> res = service.getUserData();
             response.setData(res);
         } catch (Exception e) {

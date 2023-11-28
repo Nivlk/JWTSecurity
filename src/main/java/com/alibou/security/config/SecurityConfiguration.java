@@ -48,6 +48,8 @@ public class SecurityConfiguration {
             "/api/v1/users/updaterUser",
             "/api/v1/users/setStatus",
             "/api/v1/users/getUsers",
+            "/api/v1/users/getCustomers",
+            "/api/v1/users/updateCustomer",
             "/swagger-ui.html"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
