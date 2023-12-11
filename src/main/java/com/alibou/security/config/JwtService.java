@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -34,20 +35,19 @@ public class JwtService {
     return claimsResolver.apply(claims);
   }
 
-  public String generateToken(UserDetails userDetails) {
+  public String generateToken(UserDetails userDetails, Integer id) {
     Map<String, Object> extraClaims = new HashMap<>();
-    // Incluir el rol en los datos adicionales del token
     extraClaims.put("role", userDetails.getAuthorities());
+    extraClaims.put("id", id);
     return generateToken(extraClaims, userDetails);
-
   }
 
-  public String generateToken(
-      Map<String, Object> extraClaims,
-      UserDetails userDetails
-  ) {
+  public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    // Assuming jwtExpiration is defined somewhere in your class
     return buildToken(extraClaims, userDetails, jwtExpiration);
   }
+
+
 
   public String generateRefreshToken(UserDetails userDetails) {
     Map<String, Object> extraClaims = new HashMap<>();

@@ -22,6 +22,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "_user")
 public class User implements UserDetails {
 
+
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -42,7 +44,9 @@ public class User implements UserDetails {
 
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
-
+  public Integer getId() {
+    return id;
+  }
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return role.getAuthorities();
@@ -57,7 +61,6 @@ public class User implements UserDetails {
   public String getUsername() {
     return email;
   }
-
 
 
   @Override
